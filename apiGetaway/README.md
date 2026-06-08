@@ -2,7 +2,11 @@
 
 API Gateway de la plataforma Libro Digital.
 
-Microservicio encargado del enrutamiento centralizado, validación de tokens JWT y aplicación de políticas transversales de seguridad. Desarrollado con Spring Boot 4.0.5, Java 21 y Maven. Permite la comunicación segura y eficiente entre el frontend y los microservicios del backend.
+Microservicio encargado del enrutamiento centralizado hacia authService, academicService y attendanceService. Desarrollado con Spring Boot 4.0.5, Spring Cloud Gateway y Java 21.
+
+## Puerto
+
+http://localhost:8090
 
 ## Stack tecnológico
 - Java 21
