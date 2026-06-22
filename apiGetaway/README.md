@@ -2,7 +2,7 @@
 
 API Gateway de la plataforma Libro Digital.
 
-Microservicio encargado del enrutamiento centralizado hacia authService, academicService y attendanceService. Desarrollado con Spring Boot 4.0.5, Spring Cloud Gateway y Java 21.
+Microservicio encargado del enrutamiento centralizado hacia authService, academicService y attendanceService. Desarrollado con Spring Boot 4.1.0, Spring Cloud Gateway y Java 21.
 
 ## Puerto
 
@@ -10,7 +10,7 @@ http://localhost:8090
 
 ## Stack tecnológico
 - Java 21
-- Spring Boot 4.0.5
+- Spring Boot 4.1.0
 - Spring Cloud Gateway
 - Spring Security
 - Maven
