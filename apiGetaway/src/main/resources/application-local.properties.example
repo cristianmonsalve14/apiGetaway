@@ -1,0 +1,2 @@
+# Copiar a application-local.properties (debe coincidir con auth/academic/attendance)
+jwt.secret=cambiaEstaClaveJWTDeAlMenos32CaracteresParaHS512!!

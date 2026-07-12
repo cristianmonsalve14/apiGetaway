@@ -26,8 +26,8 @@ public class ClassSession {
 
     private String topic;
 
-    @Column(name = "session_status")
-    private String sessionStatus;
+    @Column(name = "session_status_id", nullable = false)
+    private Short sessionStatusId;
 
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
@@ -39,8 +39,8 @@ public class ClassSession {
     protected void onCreate() {
         createdAt = LocalDateTime.now();
         updatedAt = LocalDateTime.now();
-        if (sessionStatus == null) {
-            sessionStatus = "ABIERTA";
+        if (sessionStatusId == null) {
+            sessionStatusId = (short) 1;
         }
         if (sessionDate == null) {
             sessionDate = LocalDate.now();
@@ -70,8 +70,8 @@ public class ClassSession {
     public String getTopic() { return topic; }
     public void setTopic(String topic) { this.topic = topic; }
 
-    public String getSessionStatus() { return sessionStatus; }
-    public void setSessionStatus(String sessionStatus) { this.sessionStatus = sessionStatus; }
+    public Short getSessionStatusId() { return sessionStatusId; }
+    public void setSessionStatusId(Short sessionStatusId) { this.sessionStatusId = sessionStatusId; }
 
     public LocalDateTime getCreatedAt() { return createdAt; }
     public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }

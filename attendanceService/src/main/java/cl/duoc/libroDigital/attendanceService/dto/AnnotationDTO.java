@@ -7,6 +7,7 @@ public class AnnotationDTO {
 
     private Long id;
     private Long studentId;
+    private String studentName;
     private Long teacherId;
     private LocalDate annotationDate;
     private String type;
@@ -19,6 +20,9 @@ public class AnnotationDTO {
 
     public Long getStudentId() { return studentId; }
     public void setStudentId(Long studentId) { this.studentId = studentId; }
+
+    public String getStudentName() { return studentName; }
+    public void setStudentName(String studentName) { this.studentName = studentName; }
 
     public Long getTeacherId() { return teacherId; }
     public void setTeacherId(Long teacherId) { this.teacherId = teacherId; }

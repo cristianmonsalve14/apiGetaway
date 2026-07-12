@@ -3,28 +3,26 @@ package cl.duoc.libroDigital.attendanceService.service.impl;
 import cl.duoc.libroDigital.attendanceService.model.AttendanceRecord;
 import cl.duoc.libroDigital.attendanceService.repository.AttendanceRecordRepository;
 import cl.duoc.libroDigital.attendanceService.service.AttendanceRecordService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class AttendanceRecordServiceImpl implements AttendanceRecordService {
 
-    private static final List<String> VALID_STATUSES = List.of(
-            "PRESENTE", "AUSENTE", "ATRASADO", "JUSTIFICADO"
-    );
+    private static final Set<Short> VALID_STATUS_IDS = Set.of((short) 1, (short) 2, (short) 3, (short) 4);
 
-    @Autowired
-    private AttendanceRecordRepository attendanceRecordRepository;
+    private final AttendanceRecordRepository attendanceRecordRepository;
+
+    public AttendanceRecordServiceImpl(AttendanceRecordRepository attendanceRecordRepository) {
+        this.attendanceRecordRepository = attendanceRecordRepository;
+    }
 
     @Override
     public AttendanceRecord createAttendance(AttendanceRecord record) {
-        if (record.getStatus() != null) {
-            record.setStatus(record.getStatus().toUpperCase());
-        }
-        validateStatus(record.getStatus());
+        validateStatusId(record.getAttendanceStatusId());
         attendanceRecordRepository
                 .findBySessionIdAndStudentId(record.getSessionId(), record.getStudentId())
                 .ifPresent(existing -> {
@@ -55,10 +53,9 @@ public class AttendanceRecordServiceImpl implements AttendanceRecordService {
             if (record.getStudentId() != null) {
                 existing.setStudentId(record.getStudentId());
             }
-            if (record.getStatus() != null) {
-                String status = record.getStatus().toUpperCase();
-                validateStatus(status);
-                existing.setStatus(status);
+            if (record.getAttendanceStatusId() != null) {
+                validateStatusId(record.getAttendanceStatusId());
+                existing.setAttendanceStatusId(record.getAttendanceStatusId());
             }
             if (record.getObservations() != null) {
                 existing.setObservations(record.getObservations());
@@ -82,10 +79,10 @@ public class AttendanceRecordServiceImpl implements AttendanceRecordService {
         return attendanceRecordRepository.findByStudentId(studentId);
     }
 
-    private void validateStatus(String status) {
-        if (status != null && !VALID_STATUSES.contains(status.toUpperCase())) {
+    private void validateStatusId(Short statusId) {
+        if (statusId != null && !VALID_STATUS_IDS.contains(statusId)) {
             throw new RuntimeException(
-                    "Estado de asistencia inválido. Valores permitidos: " + VALID_STATUSES
+                    "Estado de asistencia inválido. Valores permitidos: PRESENTE, AUSENTE, ATRASADO, JUSTIFICADO"
             );
         }
     }

@@ -19,8 +19,8 @@ public class AttendanceRecord {
     @Column(name = "student_id", nullable = false)
     private Long studentId;
 
-    @Column(nullable = false)
-    private String status;
+    @Column(name = "attendance_status_id", nullable = false)
+    private Short attendanceStatusId;
 
     private String observations;
 
@@ -34,8 +34,8 @@ public class AttendanceRecord {
     protected void onCreate() {
         createdAt = LocalDateTime.now();
         updatedAt = LocalDateTime.now();
-        if (status == null) {
-            status = "PRESENTE";
+        if (attendanceStatusId == null) {
+            attendanceStatusId = (short) 1;
         }
     }
 
@@ -53,8 +53,8 @@ public class AttendanceRecord {
     public Long getStudentId() { return studentId; }
     public void setStudentId(Long studentId) { this.studentId = studentId; }
 
-    public String getStatus() { return status; }
-    public void setStatus(String status) { this.status = status; }
+    public Short getAttendanceStatusId() { return attendanceStatusId; }
+    public void setAttendanceStatusId(Short attendanceStatusId) { this.attendanceStatusId = attendanceStatusId; }
 
     public String getObservations() { return observations; }
     public void setObservations(String observations) { this.observations = observations; }

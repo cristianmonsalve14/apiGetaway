@@ -21,8 +21,8 @@ public class Annotation {
     @Column(name = "annotation_date", nullable = false)
     private LocalDate annotationDate;
 
-    @Column(nullable = false)
-    private String type;
+    @Column(name = "annotation_type_id", nullable = false)
+    private Short annotationTypeId;
 
     private String description;
 
@@ -38,6 +38,9 @@ public class Annotation {
         updatedAt = LocalDateTime.now();
         if (annotationDate == null) {
             annotationDate = LocalDate.now();
+        }
+        if (annotationTypeId == null) {
+            annotationTypeId = (short) 1;
         }
     }
 
@@ -58,8 +61,8 @@ public class Annotation {
     public LocalDate getAnnotationDate() { return annotationDate; }
     public void setAnnotationDate(LocalDate annotationDate) { this.annotationDate = annotationDate; }
 
-    public String getType() { return type; }
-    public void setType(String type) { this.type = type; }
+    public Short getAnnotationTypeId() { return annotationTypeId; }
+    public void setAnnotationTypeId(Short annotationTypeId) { this.annotationTypeId = annotationTypeId; }
 
     public String getDescription() { return description; }
     public void setDescription(String description) { this.description = description; }

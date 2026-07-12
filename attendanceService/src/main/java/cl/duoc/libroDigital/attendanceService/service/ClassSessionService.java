@@ -20,4 +20,6 @@ public interface ClassSessionService {
     List<ClassSession> getSessionsByCourse(Long courseId);
 
     List<ClassSession> getSessionsBySubject(Long subjectId);
+
+    List<ClassSession> getSessionsByTeacher(Long teacherId);
 }

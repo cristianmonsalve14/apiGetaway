@@ -9,7 +9,7 @@ Gestiona sesiones de clase, registro de asistencia por estudiante y anotaciones 
 ## Stack tecnológico
 
 - Java 21
-- Spring Boot 4.0.5
+- Spring Boot 4.1.0
 - Spring Web
 - Spring Data JPA
 - Spring Security + JWT
@@ -28,7 +28,10 @@ Vía API Gateway: http://localhost:8090
 
 ## Base de datos
 
-`librodigital_attendance` (se configurará en la fase de bases de datos).
+PostgreSQL: `librodigital_attendance`.
+
+Secretos en `application-local.properties` (copiar desde `application-local.properties.example`):
+`spring.datasource.password` y `jwt.secret` (misma clave que auth/academic/gateway).
 
 Tablas (JPA `ddl-auto=update`):
 
@@ -37,6 +40,8 @@ Tablas (JPA `ddl-auto=update`):
 - `annotations` — anotaciones de conducta
 
 Referencias a `courseId`, `subjectId`, `teacherId`, `studentId` son IDs lógicos del `academicService` (sin FK entre bases).
+
+Al arrancar vacío, se siembra una sesión demo (teacher `prof_castillo` / id 1, curso 17, asignatura Matemáticas) con 2 asistencias y 1 anotación.
 
 ---
 

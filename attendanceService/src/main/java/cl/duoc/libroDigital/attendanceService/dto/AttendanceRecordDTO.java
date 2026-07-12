@@ -1,5 +1,6 @@
 package cl.duoc.libroDigital.attendanceService.dto;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class AttendanceRecordDTO {
@@ -7,6 +8,10 @@ public class AttendanceRecordDTO {
     private Long id;
     private Long sessionId;
     private Long studentId;
+    private String studentName;
+    private LocalDate sessionDate;
+    private String subjectName;
+    private String topic;
     private String status;
     private String observations;
     private LocalDateTime createdAt;
@@ -20,6 +25,18 @@ public class AttendanceRecordDTO {
 
     public Long getStudentId() { return studentId; }
     public void setStudentId(Long studentId) { this.studentId = studentId; }
+
+    public String getStudentName() { return studentName; }
+    public void setStudentName(String studentName) { this.studentName = studentName; }
+
+    public LocalDate getSessionDate() { return sessionDate; }
+    public void setSessionDate(LocalDate sessionDate) { this.sessionDate = sessionDate; }
+
+    public String getSubjectName() { return subjectName; }
+    public void setSubjectName(String subjectName) { this.subjectName = subjectName; }
+
+    public String getTopic() { return topic; }
+    public void setTopic(String topic) { this.topic = topic; }
 
     public String getStatus() { return status; }
     public void setStatus(String status) { this.status = status; }

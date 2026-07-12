@@ -1,9 +1,11 @@
 package cl.duoc.libroDigital.attendanceService.service.impl;
 
+import cl.duoc.libroDigital.attendanceService.exception.NotFoundException;
 import cl.duoc.libroDigital.attendanceService.model.ClassSession;
 import cl.duoc.libroDigital.attendanceService.repository.ClassSessionRepository;
 import cl.duoc.libroDigital.attendanceService.service.ClassSessionService;
-import org.springframework.beans.factory.annotation.Autowired;
+import cl.duoc.libroDigital.attendanceService.validation.AttendanceEntityValidator;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,11 +14,17 @@ import java.util.Optional;
 @Service
 public class ClassSessionServiceImpl implements ClassSessionService {
 
-    @Autowired
-    private ClassSessionRepository classSessionRepository;
+    private final ClassSessionRepository classSessionRepository;
+    private final AttendanceEntityValidator validator;
+
+    public ClassSessionServiceImpl(ClassSessionRepository classSessionRepository, AttendanceEntityValidator validator) {
+        this.classSessionRepository = classSessionRepository;
+        this.validator = validator;
+    }
 
     @Override
     public ClassSession createSession(ClassSession session) {
+        validator.validateSessionForSave(session, null);
         return classSessionRepository.save(session);
     }
 
@@ -48,11 +56,13 @@ public class ClassSessionServiceImpl implements ClassSessionService {
             if (session.getTopic() != null) {
                 existing.setTopic(session.getTopic());
             }
-            if (session.getSessionStatus() != null) {
-                existing.setSessionStatus(session.getSessionStatus());
+            if (session.getSessionStatusId() != null) {
+                existing.setSessionStatusId(session.getSessionStatusId());
             }
+
+            validator.validateSessionForSave(existing, id);
             return classSessionRepository.save(existing);
-        }).orElseThrow(() -> new RuntimeException("Sesión no encontrada con id " + id));
+        }).orElseThrow(() -> new NotFoundException("Sesión no encontrada con id " + id));
     }
 
     @Override
@@ -68,5 +78,10 @@ public class ClassSessionServiceImpl implements ClassSessionService {
     @Override
     public List<ClassSession> getSessionsBySubject(Long subjectId) {
         return classSessionRepository.findBySubjectId(subjectId);
+    }
+
+    @Override
+    public List<ClassSession> getSessionsByTeacher(Long teacherId) {
+        return classSessionRepository.findByTeacherId(teacherId);
     }
 }

@@ -1,0 +1,34 @@
+{
+  "folders": [
+    { "name": "apiGetaway", "path": "apiGetaway" },
+    { "name": "authService", "path": "authService" },
+    { "name": "academicService", "path": "academicService" },
+    { "name": "attendanceService", "path": "attendanceService" },
+    { "name": "frontend", "path": "frontend" },
+    { "name": "frontend-react", "path": "frontend-react" },
+    { "name": "infraestructura", "path": "infraestructura" }
+  ],
+  "settings": {
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "java.import.maven.enabled": true,
+    "java.import.maven.recursive": true,
+    "java.errors.incompleteClasspath.severity": "ignore",
+    "java.compile.nullAnalysis.mode": "disabled",
+    "eslint.workingDirectories": [
+      {
+        "directory": "frontend-react",
+        "changeProcessCWD": true
+      }
+    ],
+    "typescript.tsdk": "frontend-react/node_modules/typescript/lib",
+    "files.watcherExclude": {
+      "**/node_modules/**": true,
+      "**/target/**": true
+    },
+    "search.exclude": {
+      "**/node_modules": true,
+      "**/target": true,
+      "**/dist": true
+    }
+  }
+}

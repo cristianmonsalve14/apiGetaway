@@ -10,6 +10,4 @@ public interface AnnotationRepository extends JpaRepository<Annotation, Long> {
     List<Annotation> findByStudentId(Long studentId);
 
     List<Annotation> findByTeacherId(Long teacherId);
-
-    List<Annotation> findByType(String type);
 }

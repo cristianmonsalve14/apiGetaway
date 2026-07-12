@@ -1,31 +1,43 @@
 # apiGetaway
 
-API Gateway de la plataforma Libro Digital.
-
-Microservicio encargado del enrutamiento centralizado hacia authService, academicService y attendanceService. Desarrollado con Spring Boot 4.1.0, Spring Cloud Gateway y Java 21.
+API Gateway de **Libro Digital**: enrutamiento, CORS y validación JWT en el borde.
 
 ## Puerto
 
 http://localhost:8090
 
-## Stack tecnológico
-- Java 21
-- Spring Boot 4.1.0
-- Spring Cloud Gateway
-- Spring Security
-- Maven
+## Stack
 
-## Instalación y ejecución
-1. Clona este repositorio.
-2. Configura la conexión a la base de datos y servicios en `src/main/resources/application.properties`.
-3. Compila y ejecuta con:
-   ```sh
-   mvn clean spring-boot:run
-   ```
+- Java 21 / Spring Boot 4.1
+- Spring Cloud Gateway (WebFlux)
+- JWT (jjwt) — filtro `JwtAuthenticationFilter`
+
+**No usa base de datos.**
+
+## Configuración
+
+1. Copiar `application-local.properties.example` → `application-local.properties`
+2. `jwt.secret` **igual** que auth/academic/attendance
+
+```sh
+mvn spring-boot:run
+```
+
+## Rutas
+
+| Predicado | Destino |
+|-----------|---------|
+| `/auth/**`, `/admin/**` | authService :8091 |
+| `/students/**`, `/courses/**`, `/teachers/**`, `/subjects/**`, `/enrollments/**`, `/evaluations/**`, `/grades/**`, `/guardians/**` | academicService :8092 |
+| `/sessions/**`, `/attendances/**`, `/annotations/**` | attendanceService :8093 |
+
+## Seguridad
+
+- Públicos: `POST /auth/login`, `POST /auth/refresh`, `OPTIONS` (CORS)
+- Resto: header `Authorization: Bearer {token}` válido
+- CORS único en gateway (`localhost:*`); los microservicios no exponen CORS al navegador
 
 ## Autores
+
 - Cristian Monsalve
 - Hector Olivares
-
----
-Este microservicio es parte del ecosistema Libro Digital. Más información y documentación general en el repositorio de infraestructura.
