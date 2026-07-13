@@ -33,7 +33,8 @@ Monorepo / workspace de microservicios + frontend React para el caso semestral.
 
 | Usuario | Rol |
 |---------|-----|
-| `admin_colegio` | ADMINISTRADOR |
+| `admin_colegio` | SUPER_ADMINISTRADOR |
+| `admin_oficina` | ADMINISTRATIVO |
 | `prof_castillo` | DOCENTE |
 | `estudiante_demo` | ESTUDIANTE |
 | `apoderado_demo` | APODERADO |
@@ -49,3 +50,12 @@ No es un único parent Maven: cada servicio se construye por separado. Ver `Libr
 - El gateway valida JWT en el borde; los microservicios también.
 - CORS solo en el gateway.
 - Registro público deshabilitado; altas vía `/admin/users` (ADMINISTRADOR).
+
+## Informe EP3 / Examen
+
+Documentación de entrega y defensa en `infraestructura/informe-ep3/`:
+
+- `01`–`04`: arquitectura, persistencia, pruebas, repos (base EP3 actualizada)
+- `05`: **mejoras + innovación** (alertas inmediatas a apoderados)
+- `06`: guía para presentar software, código, BD y pruebas
+- `README_ENTREGA_EP3.md`: índice y checklist del ZIP
