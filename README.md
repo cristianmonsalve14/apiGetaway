@@ -53,9 +53,8 @@ No es un único parent Maven: cada servicio se construye por separado. Ver `Libr
 
 ## Informe EP3 / Examen
 
-Documentación de entrega y defensa en `infraestructura/informe-ep3/`:
+Documentación de entrega en `infraestructura/informe-ep3/`:
 
-- `01`–`04`: arquitectura, persistencia, pruebas, repos (base EP3 actualizada)
-- `05`: **mejoras + innovación** (alertas inmediatas a apoderados)
-- `06`: guía para presentar software, código, BD y pruebas
+- **`examen_transversal.pdf`**: informe único (arquitectura, BD, pruebas, repos, mejoras e innovación)
+- `01`–`05`: fuentes parciales EP3 / respaldo
 - `README_ENTREGA_EP3.md`: índice y checklist del ZIP
